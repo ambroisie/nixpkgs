@@ -325,6 +325,8 @@ let
 
     easy_logging = callPackage ../development/ocaml-modules/easy_logging { };
 
+    easy_logging_yojson = callPackage ../development/ocaml-modules/easy_logging/yojson.nix { };
+
     eigen = callPackage ../development/ocaml-modules/eigen { };
 
     either = callPackage ../development/ocaml-modules/either { };
