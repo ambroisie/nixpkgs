@@ -1014,6 +1014,8 @@ let
 
     pecu = callPackage ../development/ocaml-modules/pecu { };
 
+    pfff = callPackage ../development/ocaml-modules/pfff { };
+
     pgsolver = callPackage ../development/ocaml-modules/pgsolver { };
 
     phylogenetics = callPackage ../development/ocaml-modules/phylogenetics { };
