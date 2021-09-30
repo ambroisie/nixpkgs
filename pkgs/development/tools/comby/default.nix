@@ -1,9 +1,7 @@
 { ocamlPackages
-, fetchFromGitHub
-, lib
+, callPackage
 , zlib
 , pkg-config
-, cacert
 , gmp
 , libev
 , autoconf
@@ -11,47 +9,7 @@
 , stdenv
 }:
 let
-  mkCombyPackage = { pname, extraBuildInputs ? [ ], extraNativeInputs ? [ ], preBuild ? "" }:
-    ocamlPackages.buildDunePackage rec {
-      inherit pname preBuild;
-      version = "1.7.0";
-      useDune2 = true;
-      minimumOcamlVersion = "4.08.1";
-      doCheck = true;
-
-      src = fetchFromGitHub {
-        owner = "comby-tools";
-        repo = "comby";
-        rev = version;
-        sha256 = "sha256-Y2RcYvJOSqppmxxG8IZ5GlFkXCOIQU+1jJZ6j+PBHC4";
-      };
-
-      nativeBuildInputs = [
-        ocamlPackages.ppx_deriving
-        ocamlPackages.ppx_deriving_yojson
-        ocamlPackages.ppx_sexp_conv
-        ocamlPackages.ppx_sexp_message
-      ] ++ extraNativeInputs;
-
-      buildInputs = [
-        ocamlPackages.core
-        ocamlPackages.ocaml_pcre
-        ocamlPackages.mparser
-        ocamlPackages.mparser-pcre
-        ocamlPackages.angstrom
-      ] ++ extraBuildInputs;
-
-      checkInputs = [ cacert ];
-
-      meta = {
-        description = "Tool for searching and changing code structure";
-        license = lib.licenses.asl20;
-        homepage = "https://comby.dev";
-      };
-    };
-
-  combyKernel = mkCombyPackage { pname = "comby-kernel"; };
-  combySemantic = mkCombyPackage { pname = "comby-semantic"; extraBuildInputs = [ ocamlPackages.cohttp-lwt-unix ]; };
+  mkCombyPackage = callPackage ./mk-comby-package.nix { };
 in
 mkCombyPackage {
   pname = "comby";
@@ -83,8 +41,8 @@ mkCombyPackage {
     ocamlPackages.conduit-lwt-unix
     ocamlPackages.lwt_react
     ocamlPackages.tls
-    combyKernel
-    combySemantic
+    ocamlPackages.comby-kernel
+    ocamlPackages.comby-semantic
   ] ++ (if !stdenv.isAarch32 && !stdenv.isAarch64 then
     [ ocamlPackages.hack_parallel ]
   else

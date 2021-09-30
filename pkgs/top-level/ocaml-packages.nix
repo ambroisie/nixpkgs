@@ -183,6 +183,10 @@ let
 
     cohttp-mirage = callPackage ../development/ocaml-modules/cohttp/mirage.nix { };
 
+    comby-kernel = callPackage ../development/tools/comby/kernel.nix { };
+
+    comby-semantic = callPackage ../development/tools/comby/semantic.nix { };
+
     conduit = callPackage ../development/ocaml-modules/conduit { };
 
     conduit-async = callPackage ../development/ocaml-modules/conduit/async.nix { };
