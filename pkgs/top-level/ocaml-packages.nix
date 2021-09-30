@@ -80,6 +80,8 @@ let
 
     bls12-381 = callPackage ../development/ocaml-modules/bls12-381 { };
 
+    bloomf = callPackage ../development/ocaml-modules/bloomf { };
+
     bolt = callPackage ../development/ocaml-modules/bolt { };
 
     bos = callPackage ../development/ocaml-modules/bos { };
