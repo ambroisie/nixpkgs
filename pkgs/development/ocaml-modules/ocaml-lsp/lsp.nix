@@ -35,10 +35,9 @@ buildDunePackage rec {
 
   buildInputs =
     if lib.versionAtLeast version "1.7.0" then
-      [ pp re ppx_yojson_conv_lib octavius dune-build-info omd cmdliner ]
+      [ re octavius dune-build-info omd cmdliner ]
     else
       [ cppo
-        ppx_yojson_conv_lib
         ocaml-syntax-shims
         octavius
         dune-build-info
@@ -49,8 +48,13 @@ buildDunePackage rec {
   propagatedBuildInputs = [
     csexp
     jsonrpc
+    ppx_yojson_conv_lib
     uutf
-  ] ++ lib.optional (lib.versionOlder version "1.7.0") stdlib-shims;
+  ] ++ lib.optionals (lib.versionOlder version "1.7.0") [
+    stdlib-shims
+  ] ++ lib.optionals (lib.versionAtLeast version "1.7.0") [
+    pp
+  ];
 
   meta = jsonrpc.meta // {
     description = "LSP protocol implementation in OCaml";
