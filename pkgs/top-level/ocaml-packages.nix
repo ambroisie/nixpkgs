@@ -470,6 +470,8 @@ let
 
     dypgen = callPackage ../development/ocaml-modules/dypgen { };
 
+    grain_dypgen = callPackage ../development/ocaml-modules/grain_dypgen { };
+
     gapi_ocaml = callPackage ../development/ocaml-modules/gapi-ocaml { };
 
     gg = callPackage ../development/ocaml-modules/gg { };
