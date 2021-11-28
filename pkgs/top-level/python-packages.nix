@@ -5681,6 +5681,8 @@ in {
 
   micawber = callPackage ../development/python-modules/micawber { };
 
+  microdata = callPackage ../development/python-modules/microdata { };
+
   midiutil = callPackage ../development/python-modules/midiutil { };
 
   mido = callPackage ../development/python-modules/mido { };
