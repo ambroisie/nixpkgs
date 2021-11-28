@@ -5056,6 +5056,8 @@ in {
 
   lark = callPackage ../development/python-modules/lark { };
 
+  language-tags = callPackage ../development/python-modules/language-tags { };
+
   latexcodec = callPackage ../development/python-modules/latexcodec { };
 
   launchpadlib = callPackage ../development/python-modules/launchpadlib { };
