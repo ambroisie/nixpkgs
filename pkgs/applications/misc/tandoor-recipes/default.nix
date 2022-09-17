@@ -1,4 +1,5 @@
 { lib
+, nixosTests
 , fetchFromGitHub
 , fetchpatch
 , callPackage
@@ -123,6 +124,10 @@ python.pkgs.pythonPackages.buildPythonPackage rec {
     inherit frontend python;
 
     updateScript = ./update.sh;
+
+    tests = {
+      inherit (nixosTests) tandoor-recipes;
+    };
   };
 
   meta = common.meta // {
