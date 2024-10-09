@@ -14,7 +14,20 @@ let
 in
 {
   imports = [
-    (lib.mkRenamedOptionModule [ "services" "komga" "port" ] [ "services" "komga" "settings" "server" "port" ])
+    (lib.mkRenamedOptionModule
+      [
+        "services"
+        "komga"
+        "port"
+      ]
+      [
+        "services"
+        "komga"
+        "settings"
+        "server"
+        "port"
+      ]
+    )
   ];
 
   options = {
